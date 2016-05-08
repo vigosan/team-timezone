@@ -1,5 +1,5 @@
-import AppConstants from "../constants/app-constants";
-import {dispatch, register} from "../dispatchers/app-dispatcher";
+import AppConstants from "../constants/AppConstants";
+import {dispatch, register} from "../dispatchers/AppDispatcher";
 
 export default {
   searchAddMember(member) {

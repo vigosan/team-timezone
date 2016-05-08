@@ -1,10 +1,15 @@
 import React from "react";
-import AppActions from "../actions/app-actions";
+import Members from "./Members";
+import Search from "./Search";
 
 export default class App extends React.Component {
   render() {
-    return <h1
-    onClick={AppActions.searchAddMember.bind(null, 'member')}
-    >Hello timezones!</h1>
+    return(
+      <div className="members">
+        <Members />
+        <hr />
+        <Search />
+      </div>
+    )
   }
 }
