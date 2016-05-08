@@ -2,18 +2,18 @@ import React from "react";
 import AppStore from "../stores/AppStore";
 import SearchedMember from "./SearchedMember";
 
-function getSearchedMembers() {
-  return { members: AppStore.getSearchedMembers() };
-}
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = getSearchedMembers();
     this._onChange = this._onChange.bind(this);
   }
 
+  _getSearchedMembers() {
+    return { members: AppStore.getSearchedMembers() };
+  }
+
   componentWillMount() {
+    this.setState(this._getSearchedMembers());
     AppStore.addChangeListener(this._onChange);
   }
 
@@ -22,7 +22,7 @@ class Search extends React.Component {
   }
 
   _onChange() {
-    this.setState(getSearchedMembers);
+    this.setState(this._getSearchedMembers);
   }
 
   render() {

@@ -2,14 +2,13 @@ import React from "react";
 import AppStore from "../stores/AppStore";
 import Member from "./Member";
 
-function getMembers() {
-  return { members: AppStore.getMembers() };
-}
-
 class Members extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = getMembers();
+  _getMembers() {
+    return { members: AppStore.getMembers() };
+  }
+
+  componentWillMount() {
+    this.setState(this._getMembers());
   }
 
   render() {
