@@ -1,6 +1,6 @@
 import React from "react";
 import AppStore from "../stores/AppStore";
-import Member from "./SearchedMember";
+import SearchedMember from "./SearchedMember";
 
 function getSearchedMembers() {
   return { members: AppStore.getSearchedMembers() };
@@ -26,15 +26,18 @@ class Search extends React.Component {
   }
 
   render() {
-    let members = this.state.members.map(member => {
-      return <Member key={member.id} member={member} />
+    let searchedMembers = this.state.members.map(member => {
+      return <SearchedMember key={member.id} member={member} />;
     });
 
     return(
-      <div className="members">
-        {members}
+      <div className="form-autocomplete">
+        <div className="form-autocomplete-input">
+          {searchedMembers}
+          <input className="form-input" type="text" placeholder="Search..." />
+        </div>
       </div>
-    )
+    );
   }
 }
 

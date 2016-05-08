@@ -1,13 +1,20 @@
 import React from "react";
-import AppStore from "../stores/AppStore";
 import AppActions from "../actions/AppActions";
 
-export default (props) => {
-  return(
-    <figure class="avatar avatar-xl">
-      <img src={props.member.avatar} onClick={
-        AppActions.searchRemoveMember.bind(null, props.member)
-      } />
-    </figure>
-  )
+class SearchedMember extends React.Component {
+  render() {
+    let member = this.props.member;
+
+    return(
+      <div className="chip-sm">
+        <img src={member.avatar} className="avatar" />
+        <span className="chip-name">{member.name}</span>
+        <button className="btn btn-clear" onClick={
+          AppActions.searchRemoveMember.bind(null, member)
+        }></button>
+      </div>
+    );
+  }
 }
+
+export default SearchedMember;

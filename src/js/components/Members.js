@@ -14,14 +14,14 @@ class Members extends React.Component {
 
   render() {
     let members = this.state.members.map(member => {
-      return <Member key={member.id} member={member} />
+      return <Member key={member.id} member={member} />;
     });
 
     return(
       <div className="members">
         {members}
       </div>
-    )
+    );
   }
 }
 

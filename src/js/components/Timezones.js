@@ -1,16 +1,16 @@
 import React from "react";
-import Header from "./Header";
 import Members from "./Members";
-
-require("spectre.css/dist/spectre.css");
+import Search from "./Search";
 
 export default class App extends React.Component {
   render() {
     return(
-      <div className="container">
-        <Header />
+      <div className="members">
         <Members />
+        <hr />
+        <Search />
       </div>
     );
   }
 }
+
