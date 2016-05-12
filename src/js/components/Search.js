@@ -1,19 +1,33 @@
 import React from "react";
 import AppStore from "../stores/AppStore";
-import SearchedMember from "./SearchedMember";
+import AutocompleteInput from "./Search/AutocompleteInput";
+import AutocompleteList from "./Search/AutocompleteList";
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this._onChange = this._onChange.bind(this);
+    this.state = { searchQuery: "", searching: false };
   }
 
-  _getSearchedMembers() {
-    return { members: AppStore.getSearchedMembers() };
+  _onChange() {
+    this.setState(this._getMembers);
+  }
+
+  _changeSearchQuery(searchQuery) {
+    this.setState({ searchQuery: searchQuery });
+  }
+
+  _toogleSearching() {
+    this.setState({ searching: !this.state.searching });
+  }
+
+  _getMembers() {
+    return { members: AppStore.getMembers() };
   }
 
   componentWillMount() {
-    this.setState(this._getSearchedMembers());
+    this.setState(this._getMembers());
     AppStore.addChangeListener(this._onChange);
   }
 
@@ -21,21 +35,18 @@ class Search extends React.Component {
     AppStore.removeChangeListener(this._onChange);
   }
 
-  _onChange() {
-    this.setState(this._getSearchedMembers);
-  }
-
   render() {
-    let searchedMembers = this.state.members.map(member => {
-      return <SearchedMember key={member.id} member={member} />;
-    });
+    let { searchQuery, searching, members } = this.state;
 
-    return(
+    return (
       <div className="form-autocomplete">
-        <div className="form-autocomplete-input">
-          {searchedMembers}
-          <input className="form-input" type="text" placeholder="Search..." />
-        </div>
+        <AutocompleteInput
+          searchQuery={searchQuery}
+          onSearchQueryChanged={this._changeSearchQuery.bind(this)}
+          handleOnFocus={this._toogleSearching.bind(this)}
+          handleOnBlur={this._toogleSearching.bind(this)}
+          members={members} />
+        <AutocompleteList members={members} searching={searching} />
       </div>
     );
   }

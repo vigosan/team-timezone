@@ -42,9 +42,9 @@ const TzAPI = {
   },
 
   init() {
-    this.fakeMembers()
+    this.fakeMembers();
   }
-}
+};
 
 TzAPI.init();
 export default TzAPI;
