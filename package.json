@@ -4,7 +4,8 @@
   "description": "Team timezone visualization",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "lint": "eslint --fix ./src"
   },
   "author": "",
   "license": "ISC",
