@@ -30,7 +30,7 @@ const TzAPI = {
   },
 
   fakeMembers(count=10) {
-    for(let i = 1; i <= count; i++) {
+    for(let i of Array(count).keys()) {
       this.members.push({
         "id": `member-${i}@email.com`,
         "email": `member-${i}@email.com`,
