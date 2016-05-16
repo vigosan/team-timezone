@@ -21,7 +21,7 @@ class Timezones extends React.Component {
     });
 
     return(
-      <div className="timezones">
+      <div className="columns">
         {timezones}
       </div>
     );

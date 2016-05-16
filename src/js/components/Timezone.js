@@ -6,8 +6,8 @@ class Timezone extends React.Component {
     let { name, members } = this.props;
 
     return(
-      <div className="timezone">
-        <h1>{name}</h1>
+      <div className="column">
+        <h2>{name}</h2>
         <Members members={members} />
       </div>
     );

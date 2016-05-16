@@ -29,14 +29,19 @@ const TzAPI = {
     });
   },
 
-  fakeMembers(count=10) {
+  fakeMembers(count=25) {
     for(let i of Array(count).keys()) {
       this.members.push({
         "id": `member-${i}@email.com`,
         "email": `member-${i}@email.com`,
         "name": `Member ${i}`,
         "avatar": `https://api.adorable.io/avatars/45/${i}`,
-        "tz": ["Europe/Madrid", "America/New_York", "Europe/London"][Math.floor(Math.random()*3)]
+        "tz": [
+          "Europe/Madrid",
+          "Europe/London",
+          "America/New_York",
+          "Asia/Shanghai"
+        ][Math.floor(Math.random()*4)]
       });
     }
   },
