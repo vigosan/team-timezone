@@ -1,19 +1,8 @@
 import React from "react";
-import AppStore from "../stores/AppStore";
 import AutocompleteInput from "./Search/AutocompleteInput";
 import AutocompleteList from "./Search/AutocompleteList";
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this._onChange = this._onChange.bind(this);
-    this.state = { searchQuery: "", searching: false };
-  }
-
-  _onChange() {
-    this.setState(this._getMembers);
-  }
-
   _changeSearchQuery(searchQuery) {
     this.setState({ searchQuery: searchQuery });
   }
@@ -22,23 +11,16 @@ class Search extends React.Component {
     this.setState({ searching: !this.state.searching });
   }
 
-  _getMembers() {
-    return { members: AppStore.getMembers() };
-  }
-
-  componentWillMount() {
-    this.setState(this._getMembers());
-    AppStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    AppStore.removeChangeListener(this._onChange);
+  constructor(props) {
+    super(props);
+    this.state = { searchQuery: "", searching: false };
   }
 
   render() {
-    let { searchQuery, searching, members } = this.state;
+    let { searchQuery, searching } = this.state;
+    let { members } = this.props;
 
-    return (
+    return(
       <div className="form-autocomplete">
         <AutocompleteInput
           searchQuery={searchQuery}
