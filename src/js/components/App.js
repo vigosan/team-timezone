@@ -1,7 +1,7 @@
 import React from "react";
 import AppStore from "../stores/AppStore";
 import Header from "./Header";
-import Members from "./Members";
+import Timezones from "./Timezones";
 
 class App extends React.Component {
   _getMembers() {
@@ -32,7 +32,7 @@ class App extends React.Component {
     return(
       <div className="container">
         <Header members={members} />
-        <Members members={members} />
+        <Timezones members={members} />
       </div>
     );
   }

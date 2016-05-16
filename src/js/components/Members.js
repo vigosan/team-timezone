@@ -3,8 +3,8 @@ import Member from "./Member";
 
 class Members extends React.Component {
   render() {
-    let members = this.props.members.map(member => {
-      return <Member key={member.id} member={member} />;
+    let members = this.props.members.map((member, index) => {
+      return <Member key={index} member={member} />;
     });
 
     return(
