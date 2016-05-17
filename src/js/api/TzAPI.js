@@ -29,7 +29,7 @@ const TzAPI = {
     });
   },
 
-  getMembersByTz() {
+  getMembersGroupedByTz() {
     return this.members.reduce((acc, member) => {
       let key = member.tz;
       acc[key] = acc[key] || [];

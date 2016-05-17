@@ -26,8 +26,8 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     return TzAPI.getMembers();
   },
 
-  getMembersByTz() {
-    return TzAPI.getMembersByTz();
+  getMembersGroupedByTz() {
+    return TzAPI.getMembersGroupedByTz();
   },
 
   dispatcherIndex: register(action => {

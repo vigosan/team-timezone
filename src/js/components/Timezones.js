@@ -3,8 +3,8 @@ import Timezone from "./Timezone";
 import AppStore from "../stores/AppStore";
 import StoreWatchMixin from '../mixins/StoreWatchMixin';
 
-const getMembersByTz = () => {
-  return { membersByTz: AppStore.getMembersByTz() };
+const getMembersGroupedByTz = () => {
+  return { membersByTz: AppStore.getMembersGroupedByTz() };
 }
 
 const Timezones = (props) => {
@@ -23,4 +23,4 @@ const Timezones = (props) => {
   );
 }
 
-export default StoreWatchMixin(Timezones, getMembersByTz);
+export default StoreWatchMixin(Timezones, getMembersGroupedByTz);
