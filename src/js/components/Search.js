@@ -8,7 +8,9 @@ class Search extends React.Component {
   }
 
   _toogleSearching() {
-    this.setState({ searching: !this.state.searching });
+    setTimeout(() => {
+      this.setState({ searching: !this.state.searching });
+    }, 125);
   }
 
   constructor(props) {
@@ -18,7 +20,6 @@ class Search extends React.Component {
 
   render() {
     let { searchQuery, searching } = this.state;
-    let { members } = this.props;
 
     return(
       <div className="form-autocomplete">
@@ -26,9 +27,8 @@ class Search extends React.Component {
           searchQuery={searchQuery}
           onSearchQueryChanged={this._changeSearchQuery.bind(this)}
           handleOnFocus={this._toogleSearching.bind(this)}
-          handleOnBlur={this._toogleSearching.bind(this)}
-          members={members} />
-        <AutocompleteList members={members} searching={searching} />
+          handleOnBlur={this._toogleSearching.bind(this)} />
+        <AutocompleteList searching={searching} />
       </div>
     );
   }
