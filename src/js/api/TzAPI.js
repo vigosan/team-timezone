@@ -29,6 +29,15 @@ const TzAPI = {
     });
   },
 
+  getMembersByTz() {
+    return this.members.reduce((acc, member) => {
+      let key = member.tz;
+      acc[key] = acc[key] || [];
+      acc[key].push(member);
+      return acc;
+    }, {});
+  },
+
   fakeMembers(count=25) {
     for(let i of Array(count).keys()) {
       this.members.push({
