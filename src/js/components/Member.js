@@ -4,7 +4,7 @@ export default (props) => {
   let { member } = props;
 
   let figureClass = "avatar avatar-lg tooltip tooltip-bottom";
-  if(member.isBeingSearched) { figureClass += " searched"; };
+  if(member.isBeingSearched) { figureClass += " searched"; }
   return(
     <figure
     className={figureClass}

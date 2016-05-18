@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Timezones from "./Timezones";
 
-export default (props) => {
+export default () => {
   return(
     <div className="container">
       <Header />

@@ -5,7 +5,7 @@ import StoreWatchMixin from '../mixins/StoreWatchMixin';
 
 const getMembersGroupedByTz = () => {
   return { membersByTz: AppStore.getMembersGroupedByTz() };
-}
+};
 
 const Timezones = (props) => {
   let membersByTz = props.membersByTz;
@@ -21,6 +21,6 @@ const Timezones = (props) => {
       {timezones}
     </div>
   );
-}
+};
 
 export default StoreWatchMixin(Timezones, getMembersGroupedByTz);

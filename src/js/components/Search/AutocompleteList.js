@@ -5,7 +5,7 @@ import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 
 const getMembers = () => {
   return { members: AppStore.getMembers() };
-}
+};
 
 const AutocompleteList = (props) => {
   let { members, searching } = props;
@@ -23,7 +23,7 @@ const AutocompleteList = (props) => {
       {autocompleteMembers}
     </ul>
   );
-}
+};
 
 AutocompleteList.defaultProps = { visible: true };
 export default StoreWatchMixin(AutocompleteList, getMembers);

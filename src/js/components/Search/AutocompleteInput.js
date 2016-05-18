@@ -5,7 +5,7 @@ import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 
 const getMembers = () => {
   return { members: AppStore.getMembers() };
-}
+};
 
 const AutocompleteInput = (props) => {
   let members = props.members;
@@ -16,18 +16,21 @@ const AutocompleteInput = (props) => {
     }
   });
 
+  let handleChange = (event) => {
+    let { onSearchQueryChanged } = props;
+    onSearchQueryChanged(event.target.value);
+  };
+
   return (
     <div className="form-autocomplete-input">
       {searchedMembers}
-      <input
-        className="form-input"
-        type="text"
-        placeholder="Search..."
-        onChange={props.onSearchQueryChanged}
-        onFocus={props.handleOnFocus}
-        onBlur={props.handleOnBlur} />
+    <input
+      className="form-input"
+      type="text"
+      placeholder="Search..."
+      onChange={handleChange} />
     </div>
   );
-}
+};
 
 export default StoreWatchMixin(AutocompleteInput, getMembers);

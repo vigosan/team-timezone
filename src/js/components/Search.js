@@ -25,9 +25,7 @@ class Search extends React.Component {
       <div className="form-autocomplete">
         <AutocompleteInput
           searchQuery={searchQuery}
-          onSearchQueryChanged={this._changeSearchQuery.bind(this)}
-          handleOnFocus={this._toogleSearching.bind(this)}
-          handleOnBlur={this._toogleSearching.bind(this)} />
+          onSearchQueryChanged={this._changeSearchQuery.bind(this)} />
         <AutocompleteList searching={searching} />
       </div>
     );
