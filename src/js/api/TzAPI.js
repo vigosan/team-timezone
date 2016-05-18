@@ -30,7 +30,9 @@ const TzAPI = {
   },
 
   getMembersGroupedByTz() {
-    return this.members.reduce((acc, member) => {
+    let members = this.getMembers();
+
+    return members.reduce((acc, member) => {
       let key = member.tz;
       acc[key] = acc[key] || [];
       acc[key].push(member);
