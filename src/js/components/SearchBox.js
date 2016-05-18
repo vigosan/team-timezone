@@ -1,8 +1,8 @@
 import React from "react";
-import AutocompleteInput from "./Search/AutocompleteInput";
-import AutocompleteList from "./Search/AutocompleteList";
+import Input from "./SearchBox/Input";
+import List from "./SearchBox/List";
 
-class Search extends React.Component {
+class SearchBox extends React.Component {
   _changeSearchQuery(searchQuery) {
     this.setState({ searchQuery: searchQuery });
   }
@@ -23,13 +23,13 @@ class Search extends React.Component {
 
     return(
       <div className="form-autocomplete">
-        <AutocompleteInput
+        <Input
           searchQuery={searchQuery}
           onSearchQueryChanged={this._changeSearchQuery.bind(this)} />
-        <AutocompleteList searching={searching} />
+        <List searching={searching} />
       </div>
     );
   }
 }
 
-export default Search;
+export default SearchBox;

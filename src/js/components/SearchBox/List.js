@@ -1,5 +1,5 @@
 import React from "react";
-import AutocompleteMember from "./AutocompleteMember";
+import ListMember from "./ListMember";
 import AppStore from "../../stores/AppStore";
 import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 
@@ -7,11 +7,11 @@ const getMembers = () => {
   return { members: AppStore.getMembers() };
 };
 
-const AutocompleteList = (props) => {
+const List = (props) => {
   let { members, searching } = props;
   let autocompleteMembers = members.map(member => {
     if(!member.isBeingSearched) {
-      return <AutocompleteMember key={member.id} member={member} />;
+      return <ListMember key={member.id} member={member} />;
     }
   });
 
@@ -25,5 +25,5 @@ const AutocompleteList = (props) => {
   );
 };
 
-AutocompleteList.defaultProps = { visible: true };
-export default StoreWatchMixin(AutocompleteList, getMembers);
+List.defaultProps = { visible: true };
+export default StoreWatchMixin(List, getMembers);

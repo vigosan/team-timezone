@@ -40,6 +40,10 @@ const TzAPI = {
     }, {});
   },
 
+  getSearchedMembers() {
+    this.searchedMembers
+  },
+
   fakeMembers(count=25) {
     for(let i of Array(count).keys()) {
       this.members.push({
