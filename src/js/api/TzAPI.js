@@ -40,6 +40,18 @@ const TzAPI = {
     }, {});
   },
 
+  getNotSearchedMembersByName(name) {
+    return this.getNotSearchedMembers().filter(
+      member => member.name.includes(name)
+    );
+  },
+
+  getNotSearchedMembers() {
+    return this.getMembers().filter(
+      member => !member.isBeingSearched
+    );
+  },
+
   getSearchedMembers() {
     this.searchedMembers
   },

@@ -30,6 +30,10 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     return TzAPI.getMembersGroupedByTz();
   },
 
+  getNotSearchedMembersByName(name) {
+    return TzAPI.getNotSearchedMembersByName(name);
+  },
+
   dispatcherIndex: register(action => {
     switch(action.actionType){
       case AppConstants.SEARCH_ADD_MEMBER:
