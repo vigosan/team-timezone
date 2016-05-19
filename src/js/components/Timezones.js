@@ -1,26 +1,46 @@
 import React from "react";
 import Timezone from "./Timezone";
 import AppStore from "../stores/AppStore";
-import StoreWatchMixin from '../mixins/StoreWatchMixin';
 
-const getMembersGroupedByTz = () => {
-  return { membersByTz: AppStore.getMembersGroupedByTz() };
-};
+class Timezones extends React.Component {
+  _getMembersGroupedByTz() {
+    return { membersByTz: AppStore.getMembersGroupedByTz() };
+  }
 
-const Timezones = (props) => {
-  let membersByTz = props.membersByTz;
-  let timezones = Object.keys(membersByTz).map((tz, index) => {
-    return <Timezone
-    key={index}
-    name={tz}
-    members={membersByTz[tz]} />;
-  });
+  _onChange() {
+    this.setState(this._getMembersGroupedByTz);
+  }
 
-  return(
-    <div className="columns">
+  constructor(props) {
+    super(props);
+    this._onChange = this._onChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState(this._getMembersGroupedByTz);
+    AppStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    AppStore.removeChangeListener(this._onChange);
+  }
+
+  render() {
+    let { membersByTz } = this.state;
+
+    let timezones = Object.keys(membersByTz).map((tz, index) => {
+      return <Timezone
+      key={index}
+      name={tz}
+      members={membersByTz[tz]} />;
+    });
+
+    return(
+      <div className="columns">
       {timezones}
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
-export default StoreWatchMixin(Timezones, getMembersGroupedByTz);
+export default Timezones;

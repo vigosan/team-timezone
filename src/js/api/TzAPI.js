@@ -40,10 +40,11 @@ const TzAPI = {
     }, {});
   },
 
-  getNotSearchedMembersByName(name) {
-    return this.getNotSearchedMembers().filter(
-      member => member.name.includes(name)
+  getNotSearchedMembersByName(name, limit=10) {
+    let members = this.getNotSearchedMembers().filter(
+      member => member.name.toLowerCase().includes(name.toLowerCase())
     );
+    return members.slice(0,limit-1);
   },
 
   getNotSearchedMembers() {
@@ -53,7 +54,7 @@ const TzAPI = {
   },
 
   getSearchedMembers() {
-    this.searchedMembers
+    this.searchedMembers;
   },
 
   fakeMembers(count=25) {

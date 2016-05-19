@@ -1,32 +1,47 @@
 import React from "react";
 import Input from "./SearchBox/Input";
 import List from "./SearchBox/List";
+import AppStore from "../stores/AppStore";
 
 class SearchBox extends React.Component {
   _changeSearchQuery(searchQuery) {
-    this.setState({ searchQuery: searchQuery });
+    let isSearching = searchQuery.length > 0;
+    this.setState({ searchQuery: searchQuery, searching: isSearching });
   }
 
-  _toogleSearching() {
+  _handleInputOnBlur() {
     setTimeout(() => {
-      this.setState({ searching: !this.state.searching });
-    }, 125);
+      this.setState({ searchQuery: '', searching: false });
+    } , 150);
+  }
+
+  _onChange() {
+    this.setState({ searchQuery: '', searching: false });
   }
 
   constructor(props) {
     super(props);
     this.state = { searchQuery: "", searching: false };
+    this._onChange = this._onChange.bind(this);
+    this._changeSearchQuery = this._changeSearchQuery.bind(this);
+    this._handleInputOnBlur = this._handleInputOnBlur.bind(this);
+  }
+
+  componentWillMount() {
+    AppStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    AppStore.removeChangeListener(this._onChange);
   }
 
   render() {
-    let { searchQuery, searching } = this.state;
-
     return(
       <div className="form-autocomplete">
-        <Input
-          searchQuery={searchQuery}
-          onSearchQueryChanged={this._changeSearchQuery.bind(this)} />
-        <List searching={searching} />
+      <Input {...this.state}
+      onSearchQueryChanged={this._changeSearchQuery}
+      onInputBlur={this._handleInputOnBlur} />
+      <List {...this.state} />
       </div>
     );
   }

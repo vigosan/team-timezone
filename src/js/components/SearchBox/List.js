@@ -1,29 +1,56 @@
 import React from "react";
 import ListMember from "./ListMember";
+import NotFoundMember from "./ListNotFoundMember";
 import AppStore from "../../stores/AppStore";
-import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 
-const getMembers = () => {
-  return { members: AppStore.getMembers() };
-};
+class List extends React.Component {
+  _getNotSearchedMembersByName() {
+    return AppStore.getNotSearchedMembersByName(
+      this.props.searchQuery
+    );
+  }
 
-const List = (props) => {
-  let { members, searching } = props;
-  let autocompleteMembers = members.map(member => {
-    if(!member.isBeingSearched) {
-      return <ListMember key={member.id} member={member} />;
+  _onChange(){
+    this.setState(this._getNotSearchedMembersByName);
+  }
+
+  constructor(props){
+    super(props);
+    this._onChange = this._onChange.bind(this);
+  }
+
+  componentWillMount(){
+    this.setState(this._getNotSearchedMembersByName);
+    AppStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount(){
+    AppStore.removeChangeListener(this._onChange);
+  }
+
+  render() {
+    let { searchQuery, searching } = this.props;
+
+    let listMembers = this._getNotSearchedMembersByName().map(member => {
+      if(!member.isBeingSearched) {
+        return <ListMember key={member.id} member={member} />;
+      }
+    });
+
+    if(listMembers.length === 0) {
+      listMembers = <NotFoundMember />
     }
-  });
 
-  let ulClass = "form-autocomplete-list";
-  if(!searching) { ulClass += " hide"; }
+    let ulClass = "form-autocomplete-list";
+    if(!searching) { ulClass += " hide"; }
 
-  return (
-    <ul className={ulClass}>
-      {autocompleteMembers}
-    </ul>
-  );
-};
+    return(
+      <ul className={ulClass}>
+      {listMembers}
+      </ul>
+    );
+  }
+}
 
-List.defaultProps = { visible: true };
-export default StoreWatchMixin(List, getMembers);
+List.defaultProps = { searching: false };
+export default List;

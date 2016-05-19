@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBox from "./SearchBox";
 
-export default () => {
+export default (props) => {
   return (
     <header className="navbar">
       <section className="navbar-section">
@@ -11,4 +11,4 @@ export default () => {
       </section>
     </header>
   );
-}
+};

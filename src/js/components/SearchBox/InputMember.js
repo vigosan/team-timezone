@@ -13,4 +13,4 @@ export default (props) => {
       }></button>
     </div>
   );
-}
+};
